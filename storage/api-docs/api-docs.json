@@ -1,0 +1,2188 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Swagger with Laravel",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/countries": {
+            "get": {
+                "tags": [
+                    "Countries"
+                ],
+                "summary": "Get a list of countries",
+                "description": "Retrieve a list of countries from the database and return it as a JSON response.",
+                "operationId": "getCountries",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "country_name": {
+                                                "type": "string",
+                                                "example": "Country Name"
+                                            },
+                                            "country_code": {
+                                                "type": "string",
+                                                "example": "VN"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Countries"
+                ],
+                "summary": "Create a new country",
+                "operationId": "df966a031b20029f496b73c42952f8b6",
+                "requestBody": {
+                    "description": "Country data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "country_code",
+                                    "country_name"
+                                ],
+                                "properties": {
+                                    "country_code": {
+                                        "description": "Country code (max 2 characters)",
+                                        "type": "string",
+                                        "example": "US"
+                                    },
+                                    "country_name": {
+                                        "description": "Country name",
+                                        "type": "string",
+                                        "example": "United States"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Country created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "string",
+                                            "example": "Country created successfully!"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "type": "object",
+                                            "example": {
+                                                "country_code": [
+                                                    "The country code field is required."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/countries/{id}": {
+            "get": {
+                "tags": [
+                    "Countries"
+                ],
+                "summary": "Retrieve a specific country by ID",
+                "operationId": "c8d30a34b4da1c96db1da8961593a038",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the country",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "description": "Country ID",
+                                            "type": "integer"
+                                        },
+                                        "country_name": {
+                                            "description": "Country name",
+                                            "type": "string"
+                                        },
+                                        "country_code": {
+                                            "description": "Country code",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Country not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Country not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Countries"
+                ],
+                "summary": "Update a country",
+                "description": "Update a country.",
+                "operationId": "af7810b829a88adc7c1e0adeabafb0ae",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the country",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Country data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "country_code",
+                                    "country_name"
+                                ],
+                                "properties": {
+                                    "country_code": {
+                                        "description": "Country code (max 2 characters)",
+                                        "type": "string",
+                                        "example": "US"
+                                    },
+                                    "country_name": {
+                                        "description": "Country name",
+                                        "type": "string",
+                                        "example": "United States"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Country updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Country updated successfully!"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "type": "object",
+                                            "example": {
+                                                "country_code": [
+                                                    "The country code field is required."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Countries"
+                ],
+                "summary": "Delete a country by ID",
+                "operationId": "f7f7bb9532aad16e2741cccf765b9503",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the country to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Country deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Country deleted successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Country not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Country not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/countries/paginate/{quantity}": {
+            "get": {
+                "tags": [
+                    "Countries"
+                ],
+                "summary": "Get paginated list of countries",
+                "description": "Retrieve a paginated list of countries with the specified quantity per page.",
+                "operationId": "74b17bbdc65966db9842a9ca83928bd2",
+                "parameters": [
+                    {
+                        "name": "quantity",
+                        "in": "path",
+                        "description": "Number of countries per page",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Paginated list of countries",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "description": "Country ID",
+                                                "type": "integer"
+                                            },
+                                            "country_name": {
+                                                "description": "Country name",
+                                                "type": "string"
+                                            },
+                                            "country_code": {
+                                                "description": "Country code",
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/countries/code/{code}": {
+            "get": {
+                "tags": [
+                    "Countries"
+                ],
+                "summary": "Retrieve a specific country by code",
+                "operationId": "aaa8776407094aacccafaeede50f3ed2",
+                "parameters": [
+                    {
+                        "name": "code",
+                        "in": "path",
+                        "description": "Code of the country",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "description": "Country ID",
+                                            "type": "integer"
+                                        },
+                                        "country_name": {
+                                            "description": "Country name",
+                                            "type": "string"
+                                        },
+                                        "country_code": {
+                                            "description": "Country code",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Country not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Country not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/classes": {
+            "get": {
+                "tags": [
+                    "Classes"
+                ],
+                "summary": "Get all classes",
+                "description": "Retrieve a list of classes from the database and return it as a JSON response.",
+                "operationId": "getAllClasses",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "name": {
+                                                "type": "string",
+                                                "example": "Class Name"
+                                            },
+                                            "code": {
+                                                "type": "string",
+                                                "example": "CL1"
+                                            },
+                                            "start_date": {
+                                                "type": "string",
+                                                "format": "date",
+                                                "example": "2024-03-01"
+                                            },
+                                            "end_date": {
+                                                "type": "string",
+                                                "format": "date",
+                                                "example": "2024-03-01"
+                                            },
+                                            "schedule": {
+                                                "type": "string",
+                                                "example": "Monday"
+                                            },
+                                            "description": {
+                                                "type": "string",
+                                                "example": "Class schedule at 8:00 AM"
+                                            },
+                                            "course_id": {
+                                                "type": "integer",
+                                                "example": "1"
+                                            },
+                                            "courses": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "course_name": {
+                                                        "type": "string",
+                                                        "example": "Course Name"
+                                                    },
+                                                    "course_code": {
+                                                        "type": "string",
+                                                        "example": "Course code"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/add-classe": {
+            "post": {
+                "tags": [
+                    "Classes"
+                ],
+                "summary": "Create a new classe",
+                "description": "Creates a new classe resource.",
+                "operationId": "cb5342be78168f566a4e7e7b252f5bd2",
+                "requestBody": {
+                    "description": "Classe object that needs to be added to the store",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "code",
+                                    "start_date",
+                                    "end_date",
+                                    "schedule",
+                                    "description"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "Name of the class",
+                                        "type": "string",
+                                        "example": "Class A"
+                                    },
+                                    "code": {
+                                        "description": "Code of the class",
+                                        "type": "string",
+                                        "example": "001"
+                                    },
+                                    "start_date": {
+                                        "description": "Start date of the class",
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2024-03-24"
+                                    },
+                                    "end_date": {
+                                        "description": "End date of the class",
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2024-06-30"
+                                    },
+                                    "course_id": {
+                                        "description": "Course id",
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "schedule": {
+                                        "description": "Class schedule",
+                                        "type": "string",
+                                        "example": "Monday, Wednesday, Friday"
+                                    },
+                                    "description": {
+                                        "description": "Description of the class",
+                                        "type": "string",
+                                        "example": "This is Class A"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Classe created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Classe created successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid"
+                                        },
+                                        "errors": {
+                                            "type": "object",
+                                            "example": {
+                                                "code": [
+                                                    "The code field is required."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/get-classe/{id}": {
+            "get": {
+                "tags": [
+                    "Classes"
+                ],
+                "summary": "Retrieve a specific classe by ID",
+                "description": "Retrieves details of a classe based on its ID.",
+                "operationId": "d55e0f9eb45d91d7a4a0c351cf091d65",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the classe",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "description": "ID of the class",
+                                            "type": "integer",
+                                            "example": "1"
+                                        },
+                                        "name": {
+                                            "description": "Name of the class",
+                                            "type": "string",
+                                            "example": "Class A"
+                                        },
+                                        "code": {
+                                            "description": "Code of the class",
+                                            "type": "string",
+                                            "example": "001"
+                                        },
+                                        "start_date": {
+                                            "description": "Start date of the class",
+                                            "type": "string",
+                                            "format": "date",
+                                            "example": "2024-03-24"
+                                        },
+                                        "end_date": {
+                                            "description": "End date of the class",
+                                            "type": "string",
+                                            "format": "date",
+                                            "example": "2024-06-30"
+                                        },
+                                        "course_id": {
+                                            "description": "Course id",
+                                            "type": "integer",
+                                            "example": "1"
+                                        },
+                                        "schedule": {
+                                            "description": "Class schedule",
+                                            "type": "string",
+                                            "example": "Monday, Wednesday, Friday"
+                                        },
+                                        "description": {
+                                            "description": "Description of the class",
+                                            "type": "string",
+                                            "example": "This is Class A"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Class not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Class not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/update-classe/{id}": {
+            "put": {
+                "tags": [
+                    "Classes"
+                ],
+                "summary": "Update a specific classe by ID",
+                "description": "Updates details of a classe based on its ID.",
+                "operationId": "d8d3388ac9af1fa351059e9f75e69759",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the classe",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Classe object that needs to be updated",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "code",
+                                    "start_date",
+                                    "end_date",
+                                    "schedule",
+                                    "description"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "Name of the class",
+                                        "type": "string",
+                                        "example": "Class A"
+                                    },
+                                    "code": {
+                                        "description": "Code of the class",
+                                        "type": "string",
+                                        "example": "001"
+                                    },
+                                    "start_date": {
+                                        "description": "Start date of the class",
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2024-03-24"
+                                    },
+                                    "end_date": {
+                                        "description": "End date of the class",
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2024-06-30"
+                                    },
+                                    "course_id": {
+                                        "description": "Course id",
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "schedule": {
+                                        "description": "Class schedule",
+                                        "type": "string",
+                                        "example": "Monday, Wednesday, Friday"
+                                    },
+                                    "description": {
+                                        "description": "Description of the class",
+                                        "type": "string",
+                                        "example": "This is Class A"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Classe updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Classe updated successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Class not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Class not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid"
+                                        },
+                                        "errors": {
+                                            "type": "object",
+                                            "example": {
+                                                "code": [
+                                                    "The code field is required."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/delete-classe/{id}": {
+            "delete": {
+                "tags": [
+                    "Classes"
+                ],
+                "summary": "Delete a specific classe by ID",
+                "description": "Deletes a classe based on its ID.",
+                "operationId": "e77a85f958db1c2e96e0995ea02b2755",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the classe",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Classe deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Classe deleted successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Class not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Class not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/courses": {
+            "get": {
+                "tags": [
+                    "Courses"
+                ],
+                "summary": "Get all Courses",
+                "description": "Retrieve a list of courses from the database and return it as a JSON response.",
+                "operationId": "getAllCourses",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "course_name": {
+                                                "type": "string",
+                                                "example": "Course Name"
+                                            },
+                                            "course_code": {
+                                                "type": "string",
+                                                "example": "C1"
+                                            },
+                                            "course_image": {
+                                                "type": "string",
+                                                "example": "image.png"
+                                            },
+                                            "classes": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "classe Name"
+                                                    },
+                                                    "code": {
+                                                        "type": "string",
+                                                        "example": "Classe code"
+                                                    },
+                                                    "description": {
+                                                        "type": "string",
+                                                        "example": "Description"
+                                                    },
+                                                    "schedule": {
+                                                        "type": "string",
+                                                        "example": "Wednesday"
+                                                    },
+                                                    "start_date": {
+                                                        "type": "string",
+                                                        "format": "date",
+                                                        "example": "2024-05-01"
+                                                    },
+                                                    "end_date": {
+                                                        "type": "string",
+                                                        "format": "date",
+                                                        "example": "2024-05-01"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/add-course": {
+            "post": {
+                "tags": [
+                    "Courses"
+                ],
+                "summary": "Create a new course",
+                "description": "Creates a new course with course code, name, and image.",
+                "operationId": "1e9e5ff416f08a91d55d3ec2d59ccbd7",
+                "requestBody": {
+                    "description": "Course data to be added",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "course_code": {
+                                        "description": "Code of the course",
+                                        "type": "string",
+                                        "maxLength": 3,
+                                        "example": "001"
+                                    },
+                                    "course_name": {
+                                        "description": "Name of the course",
+                                        "type": "string",
+                                        "example": "Course A"
+                                    },
+                                    "course_image": {
+                                        "description": "Image file of the course",
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Course created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Course created successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid"
+                                        },
+                                        "errors": {
+                                            "type": "object",
+                                            "example": {
+                                                "course_code": [
+                                                    "The code field is required."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/get-course/{id}": {
+            "get": {
+                "tags": [
+                    "Courses"
+                ],
+                "summary": "Retrieve a specific course by ID",
+                "description": "Retrieves details of a course based on its ID.",
+                "operationId": "9a73f1eca8f57ffd7d1fbf1d4eb43e62",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the course",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "description": "ID of the course",
+                                            "type": "integer",
+                                            "example": "1"
+                                        },
+                                        "course_code": {
+                                            "description": "Code of the course",
+                                            "type": "string",
+                                            "example": "001"
+                                        },
+                                        "course_name": {
+                                            "description": "Name of the course",
+                                            "type": "string",
+                                            "example": "Course A"
+                                        },
+                                        "course_image": {
+                                            "description": "Image of the course",
+                                            "type": "string",
+                                            "example": "image.png"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Course not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Course not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/update-course/{id}": {
+            "put": {
+                "tags": [
+                    "Courses"
+                ],
+                "summary": "Update a course",
+                "description": "Updates an existing course with course code, name, and optional image.",
+                "operationId": "7db7f0a8117fd145665575892ab7f03c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the course to be updated",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Course data to be updated",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "course_code": {
+                                        "description": "Code of the course",
+                                        "type": "string",
+                                        "maxLength": 3,
+                                        "example": "001"
+                                    },
+                                    "course_name": {
+                                        "description": "Name of the course",
+                                        "type": "string",
+                                        "example": "Course A"
+                                    },
+                                    "course_image": {
+                                        "description": "Image file of the course",
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Course updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Course updated successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Course not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Course not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid"
+                                        },
+                                        "errors": {
+                                            "type": "object",
+                                            "example": {
+                                                "course_code": [
+                                                    "The code field is required."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/delete-course/{id}": {
+            "delete": {
+                "tags": [
+                    "Courses"
+                ],
+                "summary": "Delete a specific course by ID",
+                "description": "Deletes a course based on its ID.",
+                "operationId": "1c417e29d982a59d7bfe998de6b185d1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the course",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Course deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Course deleted successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Course not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Course not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/course-register": {
+            "get": {
+                "tags": [
+                    "Courses register"
+                ],
+                "summary": "Get all course registrations",
+                "description": "Retrieve a list of all course registrations along with associated user, course, and class information.",
+                "operationId": "getAllCourseRegistrations",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "user_id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "class_id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "course_id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "courses": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "course_name": {
+                                                        "type": "string",
+                                                        "example": "Course Name"
+                                                    },
+                                                    "course_code": {
+                                                        "type": "string",
+                                                        "example": "Course code"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "classes": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Class Name"
+                                                    },
+                                                    "code": {
+                                                        "type": "string",
+                                                        "example": "Class code"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "users": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "Nguyen Thanh Duong"
+                                                    },
+                                                    "email": {
+                                                        "type": "string",
+                                                        "example": "example@gmail.com"
+                                                    },
+                                                    "first_name": {
+                                                        "type": "string",
+                                                        "example": "Nguyen Thanh"
+                                                    },
+                                                    "last_name": {
+                                                        "type": "string",
+                                                        "example": "Duong"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Courses register"
+                ],
+                "summary": "Register for a course",
+                "description": "Registers a user for a course. Requires 'class_id' and 'course_id' in the request body.",
+                "operationId": "courseRegister",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "class_id",
+                                    "course_id"
+                                ],
+                                "properties": {
+                                    "class_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "course_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully registered for the course",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Successfully registered for the course"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "You have already registered for this course in this class"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "User login",
+                "description": "Authenticate user by providing email and password.",
+                "operationId": "7fd6912505786bf15610e828f5453efa",
+                "requestBody": {
+                    "description": "User credentials",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "description": "User email",
+                                        "type": "string",
+                                        "format": "email"
+                                    },
+                                    "password": {
+                                        "description": "User password",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Login successful"
+                                        },
+                                        "api_token": {
+                                            "type": "string",
+                                            "example": "your_api_token"
+                                        },
+                                        "redirect": {
+                                            "type": "string",
+                                            "example": "profile"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "The provided credentials do not match our records."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Unprocessable Entity"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "type": "object",
+                                            "example": {
+                                                "email": [
+                                                    "The email field is required."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Register a new user",
+                "description": "Registers a new user by providing the required information and sends an activation email to the user upon successful registration.",
+                "operationId": "6b72333a74edaccf648803c765875482",
+                "requestBody": {
+                    "description": "Registration information",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "first_name": {
+                                        "description": "First name",
+                                        "type": "string"
+                                    },
+                                    "last_name": {
+                                        "description": "Last name",
+                                        "type": "string"
+                                    },
+                                    "dob": {
+                                        "description": "2004-09-30",
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "address": {
+                                        "description": "Đã Nẵng",
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "description": "Email address",
+                                        "type": "string",
+                                        "format": "email"
+                                    },
+                                    "password": {
+                                        "description": "Password",
+                                        "type": "string",
+                                        "format": "password"
+                                    },
+                                    "password_confirmation": {
+                                        "description": "Password confirmation",
+                                        "type": "string",
+                                        "format": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User registered successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "User registered successfully. Please check your email for activation instructions."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation errors",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "Unprocessable Entity"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "type": "object",
+                                            "example": {
+                                                "first_name": [
+                                                    "The first name field is required."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/active/{token}": {
+            "get": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Activate user",
+                "description": "Activate user account by providing activation token.",
+                "operationId": "c6e5640ddf8d2ed05e753c5612a4ab49",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "path",
+                        "description": "Activation token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User activated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "User activated successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "User not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/send-reset-email": {
+            "post": {
+                "tags": [
+                    "Password Reset"
+                ],
+                "summary": "Send password reset email",
+                "description": "Send a password reset email to the specified email address.",
+                "operationId": "5b73e16f8b66084848f86f65c1461284",
+                "requestBody": {
+                    "description": "Email address to send the password reset link.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "user@example.com"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Password reset email sent successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Password reset email sent successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/reset-password": {
+            "post": {
+                "tags": [
+                    "Password Reset"
+                ],
+                "summary": "Reset password",
+                "description": "Reset the user password using the provided token and new password.",
+                "operationId": "468fc10e8c2b7cf5f33e3b5beed5dc00",
+                "requestBody": {
+                    "description": "Information needed to reset the password.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "token",
+                                    "email",
+                                    "password",
+                                    "password_confirmation"
+                                ],
+                                "properties": {
+                                    "token": {
+                                        "description": "The password reset token",
+                                        "type": "string",
+                                        "example": "reset_token"
+                                    },
+                                    "email": {
+                                        "description": "The email address of the user",
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "user@example.com"
+                                    },
+                                    "password": {
+                                        "description": "The new password",
+                                        "type": "string",
+                                        "example": "new_password"
+                                    },
+                                    "password_confirmation": {
+                                        "description": "The confirmation of the new password",
+                                        "type": "string",
+                                        "example": "new_password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Password reset successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Password reset successful"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error or token invalid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/update-profile": {
+            "put": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update user profile",
+                "description": "Update the user profile information including avatar, phone number, first name, last name, and address.",
+                "operationId": "7e4e0fb8bb84b8d85e40dd81d302aab5",
+                "requestBody": {
+                    "description": "User profile data",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "avatar": {
+                                        "description": "User avatar image (optional)",
+                                        "type": "file",
+                                        "format": "binary"
+                                    },
+                                    "phone": {
+                                        "description": "User phone number (optional)",
+                                        "type": "string"
+                                    },
+                                    "first_name": {
+                                        "description": "User first name",
+                                        "type": "string"
+                                    },
+                                    "last_name": {
+                                        "description": "User last name",
+                                        "type": "string"
+                                    },
+                                    "address": {
+                                        "description": "User address",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Profile updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "string",
+                                            "example": "Cập nhật thành công!"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/users": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get all users",
+                "description": "Retrieve a list of all users from the database and return it as a JSON response.",
+                "operationId": "getAllUsers",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer",
+                                                "example": 1
+                                            },
+                                            "name": {
+                                                "type": "string",
+                                                "example": "Nguyen Thanh Duong"
+                                            },
+                                            "email": {
+                                                "type": "string",
+                                                "example": "example@gmail.com"
+                                            },
+                                            "first_name": {
+                                                "type": "string",
+                                                "example": "Nguyen Thanh"
+                                            },
+                                            "last_name": {
+                                                "type": "string",
+                                                "example": "Duong"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/logout": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Logout user",
+                "description": "Logs out the authenticated user, invalidating the current JWT token.",
+                "operationId": "logout",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "example": "Logout successful"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "example": "Unauthenticated"
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    }
+}
